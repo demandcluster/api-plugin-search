@@ -1,27 +1,27 @@
 {
-  "name": "@reactioncommerce/api-plugin-example",
-  "description": "Boilerplate Example plugin for the Reaction API",
-  "version": "0.0.0-development",
+  "name": "@demandcluster/api-plugin-search",
+  "description": "Catalog search for Reaction commerce",
+  "version": "0.0.1-development",
   "main": "index.js",
   "type": "module",
   "engines": {
     "node": ">=12.14.1"
   },
-  "homepage": "https://github.com/reactioncommerce/api-plugin-example",
-  "url": "https://github.com/reactioncommerce/api-plugin-example",
-  "email": "engineering@reactioncommerce.com",
+  "homepage": "https://github.com/demandcluster/api-plugin-search",
+  "url": "https://github.com/demandcluster/api-plugin-search",
+  "email": "engineering@demandcluster.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/reactioncommerce/api-plugin-example.git"
+    "url": "git+https://github.com/demandcluster/api-plugin-search.git"
   },
   "author": {
-    "name": "Reaction Commerce",
-    "email": "engineering@reactioncommerce.com",
-    "url": "https://reactioncommerce.com"
+    "name": "DemandCluster",
+    "email": "engineering@demandcluster.com",
+    "url": "https://demandcluster.com"
   },
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/reactioncommerce/api-plugin-example/issues"
+    "url": "https://github.com/demandcluster/api-plugin-search/issues"
   },
   "sideEffects": false,
   "dependencies": {
