@@ -1,0 +1,91 @@
+"""
+Catalog items are combined to create a catalog. Each item can represent a different type of content.
+"""
+interface SearchItem {
+  "Item ID"
+  _id: ID!
+
+  "Date and time at which the item was created"
+  createdAt: DateTime
+
+  "Shop that owns the item"
+  shop: Shop!
+
+  "Date and time at which the item was last updated"
+  updatedAt: DateTime
+}
+
+"One product catalog for a particular shop"
+type SearchResults implements SearchItem & Node {
+  "The Catalog ID"
+  _id: ID!
+
+  "The date and time at which this Catalog was first created"
+  createdAt: DateTime!
+
+  "The shop to which this catalog belongs"
+  shop: Shop!
+
+  "The date and time at which this Catalog was last updated"
+  updatedAt: DateTime!
+}
+
+"A connection edge in which each node is a `CatalogItem` object"
+type SearchCatalogEdge {
+  "The cursor that represents this node in the paginated results"
+  cursor: ConnectionCursor!
+
+  "The catalog item"
+  node: SearchItem
+}
+
+type SearchCatalogConnection {
+  "The list of nodes that match the query, wrapped in an edge to provide a cursor string for each"
+  edges: [SearchCatalogEdge]
+
+  """
+  You can request the `nodes` directly to avoid the extra wrapping that `NodeEdge` has,
+  if you know you will not need to paginate the results.
+  """
+  nodes: [SearchItem]
+
+  "Information to help a client request the next or previous page"
+  pageInfo: PageInfo!
+
+  "The total number of nodes that match your query"
+  totalCount: Int!
+}
+
+
+extend type Query{
+    "Gets items from a shop catalog"
+  searchCatalog(
+    
+    "Provide a list of shop IDs from which you want to search catalog items"
+    shopIds: [ID]!
+    
+    "Provide a string to use as the search query for catalog items"
+    searchQuery: [String]!
+
+    "Return only results that come after this cursor. Use this with `first` to specify the number of results to return."
+    after: ConnectionCursor,
+
+    "Return only results that come before this cursor. Use this with `last` to specify the number of results to return."
+    before: ConnectionCursor,
+
+    "Return at most this many results. This parameter may be used with either `after` or `offset` parameters."
+    first: ConnectionLimitInt,
+
+    "Return at most this many results. This parameter may be used with the `before` parameter."
+    last: ConnectionLimitInt,
+
+    "Return only results that come after the Nth result. This parameter may be used with the `first` parameter."
+    offset: Int,
+
+    "Return results sorted in this order"
+    sortOrder: SortOrder = desc,
+
+  ): SearchCatalogConnection
+
+
+}
